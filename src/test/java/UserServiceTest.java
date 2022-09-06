@@ -49,7 +49,6 @@ public class UserServiceTest {
             ) {
                 Assert.fail("User был некорректно добавлен в базу данных");
             }
-
         } catch (Exception e) {
             Assert.fail("Во время тестирования сохранения пользователя произошло исключение\n" + e);
         }
@@ -62,6 +61,7 @@ public class UserServiceTest {
             userService.createUsersTable();
             userService.saveUser(testName, testLastName, testAge);
             userService.removeUserById(1L);
+
         } catch (Exception e) {
             Assert.fail("При тестировании удаления пользователя по id произошло исключение\n" + e);
         }
@@ -72,8 +72,10 @@ public class UserServiceTest {
         try {
             userService.dropUsersTable();
             userService.createUsersTable();
+
             userService.saveUser(testName, testLastName, testAge);
             List<User> userList = userService.getAllUsers();
+
 
             if (userList.size() != 1) {
                 Assert.fail("Проверьте корректность работы метода сохранения пользователя/удаления или создания таблицы");
